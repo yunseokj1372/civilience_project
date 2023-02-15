@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import uvicorn
 
 app = FastAPI()
 
@@ -15,3 +16,7 @@ def home():
 @app.post("/sentiment")
 def sentiment(sentence: str):
     return {"sentiment": sentimentAnalysis(sentence)}
+
+if __name__ == "__main__":
+    #main is the name of the file
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
